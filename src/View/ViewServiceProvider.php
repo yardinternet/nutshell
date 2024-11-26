@@ -9,7 +9,6 @@ use Roots\Acorn\View\ViewServiceProvider as ViewViewServiceProvider;
 
 class ViewServiceProvider extends ViewViewServiceProvider
 {
-
 	public function attachComposers()
 	{
 		$composers = $this->app->config['view.composers'];
