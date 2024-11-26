@@ -1,27 +1,17 @@
-# Yard :package_name
+# Yard Brave Child
 
 [![Code Style](https://github.com/yardinternet/skeleton-package/actions/workflows/format-php.yml/badge.svg?no-cache)](https://github.com/yardinternet/skeleton-package/actions/workflows/format-php.yml)
 [![PHPStan](https://github.com/yardinternet/skeleton-package/actions/workflows/phpstan.yml/badge.svg?no-cache)](https://github.com/yardinternet/skeleton-package/actions/workflows/phpstan.yml)
-[![Tests](https://github.com/yardinternet/skeleton-package/actions/workflows/run-tests.yml/badge.svg?no-cache)](https://github.com/yardinternet/skeleton-package/actions/workflows/run-tests.yml)
-[![Code Coverage Badge](https://github.com/yardinternet/skeleton-package/blob/badges/coverage.svg)](https://github.com/yardinternet/skeleton-package/actions/workflows/badges.yml)
-[![Lines of Code Badge](https://github.com/yardinternet/skeleton-package/blob/badges/lines-of-code.svg)](https://github.com/yardinternet/skeleton-package/actions/workflows/badges.yml)
+<!-- [![Tests](https://github.com/yardinternet/skeleton-package/actions/workflows/run-tests.yml/badge.svg?no-cache)](https://github.com/yardinternet/skeleton-package/actions/workflows/run-tests.yml) -->
+<!-- [![Code Coverage Badge](https://github.com/yardinternet/skeleton-package/blob/badges/coverage.svg)](https://github.com/yardinternet/skeleton-package/actions/workflows/badges.yml) -->
 
-<!--delete-->
----
-This repository provides a scaffold for creating an Acorn package. For more detailed information, please refer to the [Acorn Package Development](https://roots.io/acorn/docs/package-development/) documentation.
+Classes to use Acorn with child themes:
 
-Follow these steps to get started:
-
-1. Press the "Use this template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Have fun creating your package.
-
----
-<!--/delete-->
+- WP like inheritance for config files; child config will override parent config
+- No directory scans, everything is config base
 
 ## Requirements
 
-- [Sage](https://github.com/roots/sage) >= 10.0
 - [Acorn](https://github.com/roots/acorn) >= 4.0
 
 ## Installation
@@ -33,38 +23,50 @@ To install this package using Composer, follow these steps:
     ```json
     {
       "type": "vcs",
-      "url": "git@github.com:yardinternet/skeleton-package.git"
+      "url": "git@github.com:yardinternet/brave-child.git"
     }
     ```
 
 2. Install this package with Composer:
 
     ```sh
-    composer require yard/skeleton-package
+    composer require yard/brave-child
     ```
 
-3. Run the Acorn WP-CLI command to discover this package:
+## Configuration
 
-    ```shell
-    wp acorn package:discover
-    ```
+Add the following line to your config:
 
-You can publish the config file with:
-
-```shell
-wp acorn vendor:publish --provider="Yard\SkeletonPackage\SkeletonPackageServiceProvider"
+```php
+Config::define('ACORN_BASEPATH', Config::get('WP_CONTENT_DIR') . '/themes/sage');
 ```
 
-## Usage
+In `sage/config/app.php` change:
 
-From a Blade template:
-
-```blade
-@include('skeleton-package::example')
+```diff
+-use Roots\Acorn\ServiceProvider;
++use Yard\BraveChild\ServiceProvider;
 ```
 
-From WP-CLI:
+In `sage/functions.php` change:
 
-```shell
-wp acorn example
+```diff
+-\Roots\Bootloader()->boot();
++$bootloader = \Roots\bootloader();
++$bootloader->getApplication()->bind(
++  \Roots\Acorn\Bootstrap\LoadConfiguration::class,
++  \Yare\BraveChild\Bootstrap\LoadConfiguration::class
++);
++$bootloader->boot();
+```
+
+Add any view composers you have to `config/view.php`:
+
+```diff
+-  'composers' => [],
++  'composers => [
++    'app' => App\View\Composers\App::class,
++    'comments' => App\View\Composers\Comments::class,
++    'post' => App\View\Composers\Post::class,
++  ],
 ```
