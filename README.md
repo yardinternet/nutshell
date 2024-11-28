@@ -8,7 +8,7 @@
 Classes to use Acorn with child themes:
 
 - WP like inheritance for config files; child config will override parent config
-- No directory scans, everything is config base
+- No directory scans, everything is config based
 
 ## Requirements
 
@@ -35,32 +35,66 @@ To install this package using Composer, follow these steps:
 
 ## Configuration
 
-Add the following line to your config:
+1. Create a child theme with sage as the parent theme
+[How To Create A Child Theme | Wordpress.org](https://developer.wordpress.org/themes/advanced-topics/child-themes/#how-to-create-a-child-theme) Example `style.css`:
+
+```css
+/**
+ * Theme Name:         Sage Child Theme
+ * Template:           sage
+ * Theme URI:          https://www.example.com/sage-child/
+ * Description:        Sage child theme
+ * Version:            1.0.0
+ * Author:             Example Inc.
+ * Author URI:         http://www.example.com/
+ * Text Domain:        sage
+ * License:            MIT License
+ * License URI:        https://opensource.org/licenses/MIT
+ * Requires PHP:       8.1
+ * Requires at least:  5.9
+ */
+```
+
+2. Add PSR-4 autoloading for your child theme to your composer.json:
+
+```diff
+"autoload": {
+  "psr-4": {
+    "App\\": "web/app/themes/sage/app/",
++   "Child\\App\\": "web/app/themes/child-theme/app/",
+  }
+},
+```
+
+3. Add the following line to your config:
 
 ```php
 Config::define('ACORN_BASEPATH', Config::get('WP_CONTENT_DIR') . '/themes/sage');
 ```
 
-In `sage/config/app.php` change:
+4. In `sage/config/app.php` change:
 
 ```diff
 -use Roots\Acorn\ServiceProvider;
 +use Yard\BraveChild\ServiceProvider;
 ```
 
-In `sage/functions.php` change:
+5. In `sage/functions.php` change:
 
 ```diff
 -\Roots\Bootloader()->boot();
 +$bootloader = \Roots\bootloader();
 +$bootloader->getApplication()->bind(
 +  \Roots\Acorn\Bootstrap\LoadConfiguration::class,
-+  \Yare\BraveChild\Bootstrap\LoadConfiguration::class
++  \Yard\BraveChild\Bootstrap\LoadConfiguration::class
 +);
 +$bootloader->boot();
 ```
 
-Add any view composers you have to `config/view.php`:
+6. Add view composers to `config/view.php`
+
+> [!IMPORTANT]
+> After this change, View Composers in the app/View/Composers directory will no longer be loaded automatically. To ensure they are registered, you have to configure them manually.
 
 ```diff
 -  'composers' => [],
@@ -70,3 +104,4 @@ Add any view composers you have to `config/view.php`:
 +    'post' => App\View\Composers\Post::class,
 +  ],
 ```
+
