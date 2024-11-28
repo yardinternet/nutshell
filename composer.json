@@ -1,7 +1,7 @@
 {
-	"name": "yard/skeleton-package",
+	"name": "yard/brave-child",
 	"type": "package",
-	"description": ":package_description",
+	"description": "Package to enable Acorn in child thems",
 	"license": "MIT",
 	"config": {
 		"sort-packages": true,
