@@ -18,7 +18,7 @@ class LoadConfiguration extends AcornLoadConfiguration
 		if (! is_child_theme()) {
 			return;
 		}
-		/** @var Application*/
+		/** @var Application */
 		$childApp = clone $app;
 		$childApp->useConfigPath(get_stylesheet_directory() . '/config');
 
