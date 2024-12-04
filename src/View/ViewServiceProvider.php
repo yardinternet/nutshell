@@ -12,7 +12,7 @@ class ViewServiceProvider extends ViewViewServiceProvider
 {
 	public function attachComposers()
 	{
-		/** @var array<Composer>*/
+		/** @var array<Composer> */
 		$composers = $this->app->get('config')->get('view.composers', []);
 
 		if (is_array($composers) && Arr::isAssoc($composers)) {
