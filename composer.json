@@ -1,7 +1,7 @@
 {
 	"name": "yard/brave-child",
 	"type": "package",
-	"description": "Package to enable Acorn in child thems",
+	"description": "Package to enable Acorn in child themes",
 	"license": "MIT",
 	"config": {
 		"sort-packages": true,
