@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yard\BraveChild;
+namespace Yard\SageChildThemeSupport;
 
 use Roots\Acorn\DefaultProviders as AcornDefaultProviders;
 
@@ -12,7 +12,7 @@ class DefaultProviders extends AcornDefaultProviders
 	 * @var array<class-string>
 	 */
 	protected array $acornProvidersReplacements = [
-		\Roots\Acorn\View\ViewServiceProvider::class => \Yard\BraveChild\View\ViewServiceProvider::class,
+		\Roots\Acorn\View\ViewServiceProvider::class => \Yard\SageChildThemeSupport\View\ViewServiceProvider::class,
 	];
 
 	/**

@@ -1,4 +1,4 @@
-# Yard Brave Child
+# Sage Child Theme Support
 
 [![Code Style](https://github.com/yardinternet/skeleton-package/actions/workflows/format-php.yml/badge.svg?no-cache)](https://github.com/yardinternet/skeleton-package/actions/workflows/format-php.yml)
 [![PHPStan](https://github.com/yardinternet/skeleton-package/actions/workflows/phpstan.yml/badge.svg?no-cache)](https://github.com/yardinternet/skeleton-package/actions/workflows/phpstan.yml)
@@ -23,20 +23,21 @@ To install this package using Composer, follow these steps:
     ```json
     {
       "type": "vcs",
-      "url": "git@github.com:yardinternet/brave-child.git"
+      "url": "git@github.com:yardinternet/sage-child-theme-support.git"
     }
     ```
 
 2. Install this package with Composer:
 
     ```sh
-    composer require yard/brave-child
+    composer require yard/sage-child-theme-support
     ```
 
 ## Configuration
 
-1. Create a child theme with sage as the parent theme
-  [How To Create A Child Theme | Wordpress.org](https://developer.wordpress.org/themes/advanced-topics/child-themes/#how-to-create-a-child-theme) Example `style.css`:
+1. Create a child theme with Sage as the parent theme ([How To Create A Child Theme | Wordpress.org](https://developer.wordpress.org/themes/advanced-topics/child-themes/#how-to-create-a-child-theme))
+
+    Example `style.css`:
 
     ```css
     /**
@@ -76,7 +77,7 @@ To install this package using Composer, follow these steps:
 
     ```diff
     -use Roots\Acorn\ServiceProvider;
-    +use Yard\BraveChild\ServiceProvider;
+    +use Yard\SageChildThemeSupport\ServiceProvider;
     ```
 
 5. In `sage/functions.php` change:
@@ -86,7 +87,7 @@ To install this package using Composer, follow these steps:
      +$bootloader = \Roots\bootloader();
      +$bootloader->getApplication()->bind(
      +  \Roots\Acorn\Bootstrap\LoadConfiguration::class,
-     +  \Yard\BraveChild\Bootstrap\LoadConfiguration::class
+     +  \Yard\SageChildThemeSupport\Bootstrap\LoadConfiguration::class
      +);
      +$bootloader->boot();
      ```

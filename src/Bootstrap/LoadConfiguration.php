@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yard\BraveChild\Bootstrap;
+namespace Yard\SageChildThemeSupport\Bootstrap;
 
 use Illuminate\Contracts\Config\Repository as RepositoryContract;
 use Illuminate\Contracts\Foundation\Application as ApplicationContract;
