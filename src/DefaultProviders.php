@@ -8,10 +8,16 @@ use Roots\Acorn\DefaultProviders as AcornDefaultProviders;
 
 class DefaultProviders extends AcornDefaultProviders
 {
+	/**
+	 * @var array<class-string> $acornProvidersReplacements
+	 */
 	protected array $acornProvidersReplacements = [
 		\Roots\Acorn\View\ViewServiceProvider::class => \Yard\BraveChild\View\ViewServiceProvider::class,
 	];
 
+	/**
+	 * @param array<class-string>|null $providers
+	 */
 	public function __construct(?array $providers = null)
 	{
 		$this->acornProviders = array_map(
