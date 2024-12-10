@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yard\BraveChild;
+namespace Yard\SageChildThemeSupport;
 
 use Illuminate\Support\ServiceProvider as ServiceProviderBase;
 
