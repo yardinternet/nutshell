@@ -62,7 +62,7 @@ To install this package using Composer, follow these steps:
     "autoload": {
       "psr-4": {
         "App\\": "web/app/themes/sage/app/",
-    +   "Child\\App\\": "web/app/themes/child-theme/app/",
+    +   "ChildTheme\\App\\": "web/app/themes/child-theme/app/",
       }
     },
     ```
@@ -94,9 +94,6 @@ To install this package using Composer, follow these steps:
 
 6. Add view composers to `config/view.php`
 
-    > [!IMPORTANT]
-    > After this change, View Composers in the app/View/Composers directory will no longer be loaded automatically. To ensure they are registered, you have to configure them manually.
-
     ```diff
     -  'composers' => [],
     +  'composers => [
@@ -105,3 +102,6 @@ To install this package using Composer, follow these steps:
     +    'post' => App\View\Composers\Post::class,
     +  ],
     ```
+
+> [!IMPORTANT]
+> After this change, View Composers in the app/View/Composers directory will no longer be loaded automatically. To ensure they are registered, you have to configure them manually.
