@@ -34,10 +34,39 @@ class LoadConfiguration extends AcornLoadConfiguration
 		}
 
 		foreach ($files as $key => $path) {
-			$repository->set($key, array_merge(
-				$repository->get($key, []),
-				require $path
-			));
+			$config = require $path;
+
+			if (0 === count($config)) {
+				$this->unsetConfig($repository, $key);
+			} else {
+				$repository->set($key, array_merge(
+					$repository->get($key, []),
+					$config
+				));
+			}
 		}
+	}
+
+	private function unsetConfig(RepositoryContract $repository, string $key): void
+	{
+		$parentConfig = $repository->get($this->withoutLastSegment($key), []);
+		unset($parentConfig[$this->lastSegment($key)]);
+		$repository->set($this->withoutLastSegment($key), $parentConfig);
+	}
+
+	private function withoutLastSegment(string $key): string
+	{
+		$segments = explode('.', $key);
+
+		array_pop($segments);
+
+		return implode('.', $segments);
+	}
+
+	private function lastSegment(string $key): string
+	{
+		$segments = explode('.', $key);
+
+		return end($segments);
 	}
 }
