@@ -35,8 +35,8 @@ class LoadConfiguration extends AcornLoadConfiguration
 
 		foreach ($files as $key => $path) {
 			$repository->set($key, array_merge(
-				require $path,
-				$repository->get($key, [])
+				$repository->get($key, []),
+				require $path
 			));
 		}
 	}
