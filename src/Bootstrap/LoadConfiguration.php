@@ -33,11 +33,10 @@ class LoadConfiguration extends AcornLoadConfiguration
 	{
 		$files = $this->getConfigurationFiles($childApp);
 
- 		foreach ($files as $key => $path) {
+		foreach ($files as $key => $path) {
 			$config = require $path;
-			if (0 === count($config) ) {
+			if (0 === count($config)) {
 				$repository->unset($key);
-
 			} else {
 				$repository->set($key, array_merge(
 					$repository->get($key, []),
