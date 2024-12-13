@@ -79,7 +79,7 @@ To install this package using Composer, follow these steps:
      ```diff
 
      -\Roots\Bootloader()->boot();
-    +define('ACORN_BASEPATH', __DIR__);
+     +define('ACORN_BASEPATH', __DIR__);
      +$bootloader = \Roots\bootloader();
      +$bootloader->getApplication()->bind(
      +  \Roots\Acorn\Bootstrap\LoadConfiguration::class,
