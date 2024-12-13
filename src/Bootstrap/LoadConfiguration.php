@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Yard\SageChildThemeSupport\Bootstrap;
 
-use Illuminate\Contracts\Config\Repository as RepositoryContract;
 use Illuminate\Contracts\Foundation\Application as ApplicationContract;
 use Illuminate\Foundation\Application;
 use Roots\Acorn\Bootstrap\LoadConfiguration as AcornLoadConfiguration;
+use Yard\SageChildThemeSupport\Config\Repository;
 
 class LoadConfiguration extends AcornLoadConfiguration
 {
@@ -18,6 +18,10 @@ class LoadConfiguration extends AcornLoadConfiguration
 		if (! is_child_theme()) {
 			return;
 		}
+
+		//Swap config repository with extended version to allow unsetting of config values
+		$app->instance('config', new Repository($app->get('config')->all()));
+
 		/** @var Application */
 		$childApp = clone $app;
 		$childApp->useConfigPath(get_stylesheet_directory() . '/config');
@@ -25,19 +29,21 @@ class LoadConfiguration extends AcornLoadConfiguration
 		$this->loadChildConfigurationFiles($childApp, $app->get('config'));
 	}
 
-	public function loadChildConfigurationFiles(Application $app, RepositoryContract $repository): void
+	public function loadChildConfigurationFiles(Application $childApp, Repository $repository): void
 	{
-		$files = $this->getConfigurationFiles($app);
+		$files = $this->getConfigurationFiles($childApp);
 
-		if (! isset($files['app']) && ! $repository->has('app')) {
-			$repository->set('app', require dirname(__DIR__, 4).'/config/app.php');
-		}
+ 		foreach ($files as $key => $path) {
+			$config = require $path;
+			if (0 === count($config) ) {
+				$repository->unset($key);
 
-		foreach ($files as $key => $path) {
-			$repository->set($key, array_merge(
-				require $path,
-				$repository->get($key, [])
-			));
+			} else {
+				$repository->set($key, array_merge(
+					$repository->get($key, []),
+					$config
+				));
+			}
 		}
 	}
 }

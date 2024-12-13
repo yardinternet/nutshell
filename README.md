@@ -67,23 +67,19 @@ To install this package using Composer, follow these steps:
     },
     ```
 
-3. Add the following line to your config:
-
-    ```php
-    Config::define('ACORN_BASEPATH', Config::get('WP_CONTENT_DIR') . '/themes/sage');
-    ```
-
-4. In `sage/config/app.php` change:
+3. In `sage/config/app.php` change:
 
     ```diff
     -use Roots\Acorn\ServiceProvider;
     +use Yard\SageChildThemeSupport\ServiceProvider;
     ```
 
-5. In `sage/functions.php` change:
+4. In `sage/functions.php` change:
 
      ```diff
+
      -\Roots\Bootloader()->boot();
+    +define('ACORN_BASEPATH', __DIR__);
      +$bootloader = \Roots\bootloader();
      +$bootloader->getApplication()->bind(
      +  \Roots\Acorn\Bootstrap\LoadConfiguration::class,
@@ -92,7 +88,7 @@ To install this package using Composer, follow these steps:
      +$bootloader->boot();
      ```
 
-6. Add view composers to `config/view.php`
+5. Add view composers to `config/view.php`
 
     ```diff
     -  'composers' => [],
