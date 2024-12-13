@@ -5,9 +5,6 @@
 	"license": "MIT",
 	"config": {
 		"sort-packages": true,
-		"allow-plugins": {
-			"pestphp/pest-plugin": true
-		},
 		"platform": {
 			"php": "8.1"
 		}
@@ -26,16 +23,11 @@
 			"Yard\\SageChildThemeSupport\\": "src/"
 		}
 	},
-	"autoload-dev": {
-		"psr-4": {
-			"Yard\\SageChildThemeSupport\\Tests\\": "tests/"
-		}
-	},
 	"scripts": {
-		"analyse": [
-			"sed -i -e 's#function __(#function ____(#' ./vendor/php-stubs/wordpress-stubs/wordpress-stubs.php",
-			"vendor/bin/phpstan analyse --debug --memory-limit 1G"
+		"post-autoload-dump": [
+			"sed -i -e 's#function __(#function ____(#' ./vendor/php-stubs/wordpress-stubs/wordpress-stubs.php"
 		],
+		"analyse": "vendor/bin/phpstan analyse --debug --memory-limit 1G",
 		"format": "vendor/bin/php-cs-fixer fix"
 	}
 }
