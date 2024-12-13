@@ -9,7 +9,10 @@ use Illuminate\Support\Arr;
 
 class Repository extends RepositoryBase
 {
-	public function unset($key)
+	/**
+	 * @param array<string>|string $key
+	 */
+	public function unset(array|string $key): void
 	{
 		Arr::forget($this->items, $key);
 	}
