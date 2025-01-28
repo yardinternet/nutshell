@@ -76,20 +76,10 @@ To install this package using Composer, follow these steps:
 
 4. In `sage/functions.php` change:
 
-     ```diff
-     -\Roots\Bootloader()->boot();
-     +define('ACORN_BASEPATH', __DIR__);
-     +$bootloader = \Roots\bootloader();
-     +$bootloader->getApplication()->bind(
-     +  \Roots\Acorn\Bootstrap\LoadConfiguration::class,
-     +  \Yard\SageChildThemeSupport\Bootstrap\LoadConfiguration::class
-     +);
-     +$bootloader->getApplication()->bind(
-     +  \Roots\Acorn\Console\Kernel::class,
-     +  \Yard\SageChildThemeSupport\Console\Kernel::class
-     +);
-     +$bootloader->boot();
-     ```
+    ```diff
+    -\Roots\bootloader()->boot();
+    +\Yard\SageChildThemeSupport\bootloader()->boot();
+    ```
 
 5. Add view composers to `config/view.php`
 
