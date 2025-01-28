@@ -77,13 +77,16 @@ To install this package using Composer, follow these steps:
 4. In `sage/functions.php` change:
 
      ```diff
-
      -\Roots\Bootloader()->boot();
      +define('ACORN_BASEPATH', __DIR__);
      +$bootloader = \Roots\bootloader();
      +$bootloader->getApplication()->bind(
      +  \Roots\Acorn\Bootstrap\LoadConfiguration::class,
      +  \Yard\SageChildThemeSupport\Bootstrap\LoadConfiguration::class
+     +);
+     +$bootloader->getApplication()->bind(
+     +  \Roots\Acorn\Console\Kernel::class,
+     +  \Yard\SageChildThemeSupport\Console\Kernel::class
      +);
      +$bootloader->boot();
      ```
@@ -99,5 +102,17 @@ To install this package using Composer, follow these steps:
     +  ],
     ```
 
+6. Add any custom console commands to `config/console.php`:
+
+    ```diff
+    +  'commands => [
+    +    'test' => App\Console\Commands\Test::class,
+    +  ],
+    ```
+
 > [!IMPORTANT]
-> After this change, View Composers in the app/View/Composers directory will no longer be loaded automatically. To ensure they are registered, you have to configure them manually.
+> After this change:
+>
+> - View Composers in the app/View/Composers directory will no longer be loaded automatically. To ensure they are registered, you have to configure them manually.
+> - Console Commands in the app/Console/Commands directory will no longer be loaded automatically. To ensure they are register, you have to configue them manually.
+>  
