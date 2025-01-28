@@ -22,7 +22,10 @@
 	"autoload": {
 		"psr-4": {
 			"Yard\\SageChildThemeSupport\\": "src/"
-		}
+		},
+		"files": [
+			"src/helpers.php"
+		]
 	},
 	"scripts": {
 		"post-autoload-dump": [
