@@ -7,8 +7,8 @@
 
 Classes to use Acorn with child themes:
 
-- WP like inheritance for config files; child config will override parent config
-- No directory scans, everything is config based
+- WP like inheritance for config files; child config will override parent configuration.
+- No directory scans, everything is configuration based.
 
 ## Requirements
 
@@ -56,7 +56,7 @@ To install this package using Composer, follow these steps:
       */
     ```
 
-2. Add PSR-4 autoloading for your child theme to your composer.json:
+2. Add PSR-4 autoloading for your child theme to your (root) `composer.json`:
 
     ```diff
     "autoload": {
@@ -66,6 +66,8 @@ To install this package using Composer, follow these steps:
       }
     },
     ```
+
+    Remove the autoloading from your theme `composer.json` if applicable.
 
 3. In `sage/config/app.php` change:
 
@@ -78,6 +80,7 @@ To install this package using Composer, follow these steps:
 
     ```diff
     -\Roots\bootloader()->boot();
+    +define('ACORN_BASEPATH', __DIR__);
     +\Yard\SageChildThemeSupport\bootloader()->boot();
     ```
 
@@ -104,5 +107,9 @@ To install this package using Composer, follow these steps:
 > After this change:
 >
 > - View Composers in the app/View/Composers directory will no longer be loaded automatically. To ensure they are registered, you have to configure them manually.
-> - Console Commands in the app/Console/Commands directory will no longer be loaded automatically. To ensure they are register, you have to configue them manually.
->  
+> - Console Commands in the app/Console/Commands directory will no longer be loaded automatically. To ensure they are register, you have to configure them manually.
+
+## Usage
+
+To override configuration for your child theme add the relevant files to the `child-theme/config` directory.
+The configuration for the child theme is merged with the parent configuration where child theme configuration takes precedence. To unset a configuration option from the parent theme in the child theme you can pass an empty array for that configuration option.
