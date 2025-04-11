@@ -6,6 +6,9 @@ namespace Yard\SageChildThemeSupport;
 
 use Roots\Acorn\Bootloader;
 
+use Yard\SageChildThemeSupport\Assets\Vite;
+use Illuminate\Foundation\Vite as FoundationVite;
+
 function bootloader(): Bootloader
 {
 	$bootloader = \Roots\bootloader();
@@ -17,6 +20,8 @@ function bootloader(): Bootloader
 		\Roots\Acorn\Console\Kernel::class,
 		\Yard\SageChildThemeSupport\Console\Kernel::class
 	);
+
+	$bootloader->getApplication()->alias(Vite::class, FoundationVite::class);
 
 	return $bootloader;
 }
