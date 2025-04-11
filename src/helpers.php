@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Yard\SageChildThemeSupport;
 
-use Roots\Acorn\Bootloader;
-
-use Yard\SageChildThemeSupport\Assets\Vite;
 use Illuminate\Foundation\Vite as FoundationVite;
+
+use Roots\Acorn\Bootloader;
+use Yard\SageChildThemeSupport\Assets\Vite;
 
 function bootloader(): Bootloader
 {
