@@ -30,5 +30,7 @@ function bootloader(): Bootloader
 		\Illuminate\Foundation\Vite::class
 	);
 
+	$bootloader->getApplication()->usePublicPath(get_theme_file_path('public'));
+
 	return $bootloader;
 }
