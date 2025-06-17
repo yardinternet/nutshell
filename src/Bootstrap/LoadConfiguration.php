@@ -15,7 +15,7 @@ class LoadConfiguration extends AcornLoadConfiguration
 	{
 		parent::bootstrap($app);
 
-		if (! is_child_theme()) {
+		if (! is_child_theme() || ! is_dir(get_stylesheet_directory() . '/config')) {
 			return;
 		}
 
