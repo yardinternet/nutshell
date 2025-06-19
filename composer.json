@@ -1,5 +1,5 @@
 {
-	"name": "yard/sage-child-theme-support",
+	"name": "yard/nutshell",
 	"type": "package",
 	"description": "Package to enable Acorn in child themes",
 	"license": "MIT",
@@ -22,7 +22,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Yard\\SageChildThemeSupport\\": "src/"
+			"Yard\\Nutshell\\": "src/"
 		},
 		"files": [
 			"src/helpers.php"

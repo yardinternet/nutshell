@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yard\SageChildThemeSupport\View;
+namespace Yard\Nutshell\View;
 
 use Illuminate\Support\Arr;
 use Roots\Acorn\View\Composer;

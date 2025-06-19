@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Yard\SageChildThemeSupport\Bootstrap;
+namespace Yard\Nutshell\Bootstrap;
 
 use Illuminate\Contracts\Foundation\Application as ApplicationContract;
 use Illuminate\Foundation\Application;
 use Roots\Acorn\Bootstrap\LoadConfiguration as AcornLoadConfiguration;
-use Yard\SageChildThemeSupport\Config\Repository;
+use Yard\Nutshell\Config\Repository;
 
 class LoadConfiguration extends AcornLoadConfiguration
 {

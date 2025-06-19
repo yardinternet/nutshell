@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yard\SageChildThemeSupport;
+namespace Yard\Nutshell;
 
 use Roots\Acorn\Bootloader;
 
@@ -12,21 +12,21 @@ function bootloader(): Bootloader
 
 	$bootloader->getApplication()->bind(
 		\Roots\Acorn\Bootstrap\LoadConfiguration::class,
-		\Yard\SageChildThemeSupport\Bootstrap\LoadConfiguration::class
+		\Yard\Nutshell\Bootstrap\LoadConfiguration::class
 	);
 
 	$bootloader->getApplication()->bind(
 		\Roots\Acorn\Console\Kernel::class,
-		\Yard\SageChildThemeSupport\Console\Kernel::class
+		\Yard\Nutshell\Console\Kernel::class
 	);
 
 	$bootloader->getApplication()->bind(
 		\Roots\Acorn\Exceptions\Handler::class,
-		\Yard\SageChildThemeSupport\Exceptions\Handler::class
+		\Yard\Nutshell\Exceptions\Handler::class
 	);
 
 	$bootloader->getApplication()->alias(
-		\Yard\SageChildThemeSupport\Assets\Vite::class,
+		\Yard\Nutshell\Assets\Vite::class,
 		\Illuminate\Foundation\Vite::class
 	);
 

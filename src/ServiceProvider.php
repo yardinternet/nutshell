@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yard\SageChildThemeSupport;
+namespace Yard\Nutshell;
 
 use Illuminate\Support\ServiceProvider as ServiceProviderBase;
 
