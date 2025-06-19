@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yard\SageChildThemeSupport\Exceptions;
+namespace Yard\Nutshell\Exceptions;
 
 use Roots\Acorn\Exceptions\Handler as AcornHandler;
 use Sentry\Laravel\Integration;

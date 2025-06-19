@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yard\SageChildThemeSupport\Config;
+namespace Yard\Nutshell\Config;
 
 use Illuminate\Config\Repository as RepositoryBase;
 use Illuminate\Support\Arr;

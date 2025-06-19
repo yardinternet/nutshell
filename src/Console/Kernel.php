@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yard\SageChildThemeSupport\Console;
+namespace Yard\Nutshell\Console;
 
 use Roots\Acorn\Console\Kernel as AcornKernel;
 

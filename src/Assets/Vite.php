@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yard\SageChildThemeSupport\Assets;
+namespace Yard\Nutshell\Assets;
 
 use Illuminate\Foundation\Vite as FoundationVite;
 
