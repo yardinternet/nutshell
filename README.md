@@ -86,7 +86,16 @@
       +\Yard\Nutshell\bootloader()->boot();
       ```
 
-3. **Register View Composers**
+3. **Update app config**
+
+   - In your themes `config/app.php' replace Acorn's ServiceProvider with Nutshell's ServiceProvider
+
+      ```diff
+      -use Roots\Acorn\ServiceProvider;
+      +use Yard\Nutshell\ServiceProvider;
+      ```
+
+4. **Register View Composers**
    - Add your view composers to `config/view.php` under the `composers` key. Automatic discovery is disabled for explicit control.
 
       ```diff
@@ -98,7 +107,7 @@
       +  ],
       ```
 
-4. **Register Console Commands**
+5. **Register Console Commands**
    - Add custom Artisan commands to `config/console.php` under the `commands` key.
 
       ```diff
@@ -107,10 +116,10 @@
       +  ],
       ```
 
-5. **Vite Integration**
+6. **Vite Integration**
    - Vite is enabled by default. Use the provided `Yard\Nutshell\Assets\Vite` class for asset management.
 
-6. **Sentry Integration**
+7. **Sentry Integration**
    - Sentry is automatically integrated if `sentry/sentry-laravel` is installed and configured.
 
 ## Usage
