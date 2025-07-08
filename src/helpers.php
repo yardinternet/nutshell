@@ -21,6 +21,11 @@ function bootloader(): Bootloader
 	);
 
 	$bootloader->getApplication()->bind(
+		\Roots\Acorn\Http\Kernel::class,
+		\Yard\Nutshell\Http\Kernel::class
+	);
+
+	$bootloader->getApplication()->bind(
 		\Roots\Acorn\Exceptions\Handler::class,
 		\Yard\Nutshell\Exceptions\Handler::class
 	);
