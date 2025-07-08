@@ -12,7 +12,8 @@
 	"require": {
 		"php": ">=8.1",
 		"roots/acorn": "^4.3",
-		"sentry/sentry-laravel": "^4.4"
+		"sentry/sentry-laravel": "^4.4",
+		"spatie/laravel-csp": "^2.10"
 	},
 	"require-dev": {
 		"larastan/larastan": "^2.9",
