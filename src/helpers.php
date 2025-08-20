@@ -14,7 +14,7 @@ use Yard\Logging\Log;
 
 function bootloader(?string $basePath = null): ApplicationBuilder
 {
-	$bootloader = Application::configure($basePath)
+	$application = Application::configure()
 		->withBindings([
 			\Roots\Acorn\Bootstrap\LoadConfiguration::class => \Yard\Nutshell\Bootstrap\LoadConfiguration::class,
 			\Roots\Acorn\Console\Kernel::class => \Yard\Nutshell\Console\Kernel::class,
