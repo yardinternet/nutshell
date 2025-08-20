@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Yard\Nutshell;
 
 use Roots\Acorn\Application;
+use Sentry\Laravel\Integration;
+use Throwable;
 
 function bootloader(): Application
 {
@@ -12,9 +14,15 @@ function bootloader(): Application
 		->withBindings([
 			\Roots\Acorn\Bootstrap\LoadConfiguration::class => \Yard\Nutshell\Bootstrap\LoadConfiguration::class,
 			\Roots\Acorn\Console\Kernel::class => \Yard\Nutshell\Console\Kernel::class,
-			\Roots\Acorn\Http\Kernel::class => \Yard\Nutshell\Http\Kernel::class,
-			\Roots\Acorn\Exceptions\Handler::class => \Yard\Nutshell\Exceptions\Handler::class,
 			\Yard\Nutshell\Assets\Vite::class => \Illuminate\Foundation\Vite::class,
+		])
+		->withExceptions(function ($exceptions) {
+			$exceptions->report(function (Throwable $e) {
+				Integration::captureUnhandledException($e);
+			});
+    	})
+		->withMiddleware([
+			\Spatie\Csp\AddCspHeaders::class
 		])
 		->withRouting(wordpress: true)
 		->boot()
