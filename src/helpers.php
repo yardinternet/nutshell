@@ -9,7 +9,6 @@ use Roots\Acorn\Application;
 function bootloader(): Application
 {
 	$application = Application::configure()
-		->withProviders()
 		->withBindings([
 			\Roots\Acorn\Bootstrap\LoadConfiguration::class => \Yard\Nutshell\Bootstrap\LoadConfiguration::class,
 			\Roots\Acorn\Console\Kernel::class => \Yard\Nutshell\Console\Kernel::class,
