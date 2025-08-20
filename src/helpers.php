@@ -20,9 +20,9 @@ function bootloader(): Application
 			$exceptions->report(function (Throwable $e) {
 				Integration::captureUnhandledException($e);
 			});
-    	})
+		})
 		->withMiddleware([
-			\Spatie\Csp\AddCspHeaders::class
+			\Spatie\Csp\AddCspHeaders::class,
 		])
 		->withRouting(wordpress: true)
 		->boot()
