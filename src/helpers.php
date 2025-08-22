@@ -23,7 +23,7 @@ function bootloader(): Application
 		->withMiddleware([
 			\Spatie\Csp\AddCspHeaders::class,
 		])
-		->withRouting(wordpress: true)
+		// ->withRouting(wordpress: true)
 		->boot()
 		->usePublicPath(get_theme_file_path('public'));
 
