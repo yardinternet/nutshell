@@ -24,7 +24,7 @@ function bootloader(): Application
 			});
 		})
 		->withMiddleware(function (Middleware $middleware) {
-     		$middleware->append(AddCspHeaders::class);
+			$middleware->append(AddCspHeaders::class);
 		})
 		->boot()
 		->usePublicPath(get_theme_file_path('public'));
