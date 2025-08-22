@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Yard\Nutshell;
 
 use Roots\Acorn\Application;
+use Roots\Acorn\Configuration\Exceptions;
+use Roots\Acorn\Configuration\Middleware;
 use Sentry\Laravel\Integration;
+use Spatie\Csp\AddCspHeaders;
 use Throwable;
 
 function bootloader(?string $basePath = null): ApplicationBuilder
@@ -15,16 +18,16 @@ function bootloader(?string $basePath = null): ApplicationBuilder
 			\Roots\Acorn\Bootstrap\LoadConfiguration::class => \Yard\Nutshell\Bootstrap\LoadConfiguration::class,
 			\Roots\Acorn\Console\Kernel::class => \Yard\Nutshell\Console\Kernel::class,
 		])
-		->withExceptions(function ($exceptions) {
+		->withExceptions(function (Exceptions $exceptions) {
 			$exceptions->report(function (Throwable $e) {
 				Integration::captureUnhandledException($e);
 			});
 		})
-		->withMiddleware([
-			\Spatie\Csp\AddCspHeaders::class,
-		])
-		->withRouting(wordpress: true)
-		->withPaths(public: get_theme_file_path('public'));
+		->withMiddleware(function (Middleware $middleware) {
+     		$middleware->append(AddCspHeaders::class);
+		})
+		->boot()
+		->usePublicPath(get_theme_file_path('public'));
 
 	do_action(Log::WP_ACTION_SET_LOGGER, $bootloader->create()->make('log'));
 
