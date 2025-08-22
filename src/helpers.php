@@ -14,7 +14,6 @@ function bootloader(?string $basePath = null): ApplicationBuilder
 		->withBindings([
 			\Roots\Acorn\Bootstrap\LoadConfiguration::class => \Yard\Nutshell\Bootstrap\LoadConfiguration::class,
 			\Roots\Acorn\Console\Kernel::class => \Yard\Nutshell\Console\Kernel::class,
-			\Yard\Nutshell\Assets\Vite::class => \Illuminate\Foundation\Vite::class,
 		])
 		->withExceptions(function ($exceptions) {
 			$exceptions->report(function (Throwable $e) {
