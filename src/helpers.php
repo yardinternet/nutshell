@@ -26,6 +26,7 @@ function bootloader(): Application
 		->withMiddleware(function (Middleware $middleware) {
 			$middleware->append(AddCspHeaders::class);
 		})
+		->withRouting(wordpress: true)
 		->boot()
 		->usePublicPath(get_theme_file_path('public'));
 
