@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Yard\Nutshell;
 
 use Roots\Acorn\Bootloader;
+use Yard\Logging\Log;
 
 function bootloader(): Bootloader
 {
@@ -36,6 +37,9 @@ function bootloader(): Bootloader
 	);
 
 	$bootloader->getApplication()->usePublicPath(get_theme_file_path('public'));
+
+	// Push Laravel logger to WordPress plugins
+	do_action(Log::WP_ACTION_SET_LOGGER, $bootloader->getApplication()->make('log'));
 
 	return $bootloader;
 }

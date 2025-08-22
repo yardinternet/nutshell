@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6df63d811f753861c778ecad443256b6",
+    "content-hash": "65d1bf566baecd45439184147120876d",
     "packages": [
         {
             "name": "brick/math",
@@ -6083,6 +6083,47 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "yard/logger",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yardinternet/logger.git",
+                "reference": "c3c8b121933a014cc96b57b860660c6880dbf3a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yardinternet/logger/zipball/c3c8b121933a014cc96b57b860660c6880dbf3a5",
+                "reference": "c3c8b121933a014cc96b57b860660c6880dbf3a5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4",
+                "psr/log": ">=1.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "pestphp/pest": "^1.0",
+                "phpstan/phpstan": "^2.0",
+                "yard/php-cs-fixer-rules": "^1.0"
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "Yard\\Logging\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Basic replaceable PSR-3 logger",
+            "support": {
+                "issues": "https://github.com/yardinternet/logger/issues",
+                "source": "https://github.com/yardinternet/logger/tree/v1.0.1"
+            },
+            "time": "2025-07-22T06:10:01+00:00"
         }
     ],
     "packages-dev": [
@@ -10415,13 +10456,13 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.1"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "platform-overrides": {
         "php": "8.1"
     },
