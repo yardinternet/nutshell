@@ -69,7 +69,7 @@
          * Text Domain:        sage
          * License:            MIT License
          * License URI:        https://opensource.org/licenses/MIT
-         * Requires PHP:       8.1
+         * Requires PHP:       8.2
          * Requires at least:  5.9
          */
          ```
@@ -81,9 +81,9 @@
    - In your theme's `functions.php`, use the `Yard\Nutshell\bootloader()` helper to bootstrap Acorn with Nutshell's enhancements.
 
       ```diff
-      -\Roots\bootloader()->boot();
+      -\Roots\Acorn\Application::configure()->boot();
       +define('ACORN_BASEPATH', __DIR__);
-      +\Yard\Nutshell\bootloader()->boot();
+      +\Yard\Nutshell\bootloader();
       ```
 
 3. **Update app config**

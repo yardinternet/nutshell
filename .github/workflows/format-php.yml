@@ -1,9 +1,9 @@
 name: Code Style
 
 on:
-    pull_request:
-        paths:
-            - '**.php'
+  pull_request:
+    paths:
+      - "**.php"
 
 jobs:
   php-cs-fixer:
