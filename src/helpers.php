@@ -9,7 +9,6 @@ use Roots\Acorn\Configuration\Exceptions;
 use Roots\Acorn\Configuration\Middleware;
 use Sentry\Laravel\Integration;
 use Spatie\Csp\AddCspHeaders;
-use Throwable;
 
 function bootloader(): Application
 {
@@ -19,7 +18,7 @@ function bootloader(): Application
 			\Roots\Acorn\Console\Kernel::class => \Yard\Nutshell\Console\Kernel::class,
 		])
 		->withExceptions(function (Exceptions $exceptions) {
-			$exceptions->report(function (Throwable $e) {
+			$exceptions->report(function (\Throwable $e) {
 				Integration::captureUnhandledException($e);
 			});
 		})

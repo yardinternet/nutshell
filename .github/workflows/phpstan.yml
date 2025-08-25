@@ -10,6 +10,4 @@ on:
 jobs:
   phpstan:
     uses: yardinternet/workflows/.github/workflows/phpstan.yml@main
-    with:
-      php-version: "8.2"
     secrets: inherit
