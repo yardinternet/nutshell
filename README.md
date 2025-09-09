@@ -82,8 +82,7 @@
 
       ```diff
       -\Roots\Acorn\Application::configure()->boot();
-      +define('ACORN_BASEPATH', __DIR__);
-      +\Yard\Nutshell\bootloader();
+      +\Yard\Nutshell\bootloader(__DIR__)->boot();
       ```
 
 3. **Update app config**
