@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace Yard\Nutshell;
 
 use Roots\Acorn\Application;
+use Roots\Acorn\Configuration\ApplicationBuilder;
 use Roots\Acorn\Configuration\Exceptions;
 use Roots\Acorn\Configuration\Middleware;
 use Sentry\Laravel\Integration;
 use Spatie\Csp\AddCspHeaders;
 
-function bootloader(): Application
+function bootloader(?string $basePath = null): ApplicationBuilder
 {
-	$application = Application::configure()
+	return Application::configure($basePath)
 		->withBindings([
 			\Roots\Acorn\Bootstrap\LoadConfiguration::class => \Yard\Nutshell\Bootstrap\LoadConfiguration::class,
 			\Roots\Acorn\Console\Kernel::class => \Yard\Nutshell\Console\Kernel::class,
@@ -26,8 +27,5 @@ function bootloader(): Application
 			$middleware->append(AddCspHeaders::class);
 		})
 		->withRouting(wordpress: true)
-		->boot()
-		->usePublicPath(get_theme_file_path('public'));
-
-	return $application;
+		->withPaths(public: get_theme_file_path('public'));
 }
