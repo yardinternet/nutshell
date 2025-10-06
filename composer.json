@@ -13,7 +13,8 @@
 		"php": ">=8.2",
 		"roots/acorn": "^5.0",
 		"sentry/sentry-laravel": "^4.4",
-		"spatie/laravel-csp": "^2.10"
+		"spatie/laravel-csp": "^2.10",
+		"yard/logger": "^1.0"
 	},
 	"require-dev": {
 		"larastan/larastan": "^3.6",
