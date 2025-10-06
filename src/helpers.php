@@ -10,10 +10,11 @@ use Roots\Acorn\Configuration\Exceptions;
 use Roots\Acorn\Configuration\Middleware;
 use Sentry\Laravel\Integration;
 use Spatie\Csp\AddCspHeaders;
+use Yard\Logging\Log;
 
 function bootloader(?string $basePath = null): ApplicationBuilder
 {
-	return Application::configure($basePath)
+	$bootloader = Application::configure($basePath)
 		->withBindings([
 			\Roots\Acorn\Bootstrap\LoadConfiguration::class => \Yard\Nutshell\Bootstrap\LoadConfiguration::class,
 			\Roots\Acorn\Console\Kernel::class => \Yard\Nutshell\Console\Kernel::class,
@@ -28,4 +29,10 @@ function bootloader(?string $basePath = null): ApplicationBuilder
 		})
 		->withRouting(wordpress: true)
 		->withPaths(public: get_theme_file_path('public'));
+
+	$app = $bootloader->create();
+
+ 	do_action(Log::WP_ACTION_SET_LOGGER, $app->make('log'));
+
+	return $bootloader;
 }

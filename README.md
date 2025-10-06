@@ -21,8 +21,8 @@
 
 ## Requirements
 
-- PHP >= 8.1
-- [Acorn](https://github.com/roots/acorn) ^4.3
+- PHP >= 8.2
+- [Acorn](https://github.com/roots/acorn) ^5.0
 - Composer
 
 ## Installation
@@ -55,70 +55,67 @@
 1. **Child Theme Setup**
    - Create a child theme with Sage as the parent theme. See [WordPress Child Themes](https://developer.wordpress.org/themes/advanced-topics/child-themes/#how-to-create-a-child-theme).
 
-      Example `style.css`:
+     Example `style.css`:
 
-      ```css
-      /**
-         * Theme Name:         Sage Child Theme
-         * Template:           sage
-         * Theme URI:          https://www.example.com/sage-child/
-         * Description:        Sage child theme
-         * Version:            1.0.0
-         * Author:             Example Inc.
-         * Author URI:         http://www.example.com/
-         * Text Domain:        sage
-         * License:            MIT License
-         * License URI:        https://opensource.org/licenses/MIT
-         * Requires PHP:       8.2
-         * Requires at least:  5.9
-         */
-         ```
+     ````css
+     /**
+        * Theme Name:         Sage Child Theme
+        * Template:           sage
+        * Theme URI:          https://www.example.com/sage-child/
+        * Description:        Sage child theme
+        * Version:            1.0.0
+        * Author:             Example Inc.
+        * Author URI:         http://www.example.com/
+        * Text Domain:        sage
+        * License:            MIT License
+        * License URI:        https://opensource.org/licenses/MIT
+        * Requires PHP:       8.2
+        * Requires at least:  5.9
+        */
+        ```
+
+     ````
 
    - Place your configuration files in `config/` within your child theme directory. These will be merged with the parent configuration where child theme configuration takes precedence. To unset a configuration option from the parent theme in the child theme you can pass an empty array for that configuration option.
 
 2. **Update Acorn Bootloader**
-
    - In your theme's `functions.php`, use the `Yard\Nutshell\bootloader()` helper to bootstrap Acorn with Nutshell's enhancements.
 
-      ```diff
-      -\Roots\Acorn\Application::configure()->boot();
-      +\Yard\Nutshell\bootloader(__DIR__)->boot();
-      ```
+     ```diff
+     -\Roots\Acorn\Application::configure()->boot();
+     +\Yard\Nutshell\bootloader(__DIR__)->boot();
+     ```
 
 3. **Update app config**
-
    - In your themes `config/app.php' replace Acorn's ServiceProvider with Nutshell's ServiceProvider
 
-      ```diff
-      -use Roots\Acorn\ServiceProvider;
-      +use Yard\Nutshell\ServiceProvider;
-      ```
+     ```diff
+     -use Roots\Acorn\ServiceProvider;
+     +use Yard\Nutshell\ServiceProvider;
+     ```
 
 4. **Register View Composers**
    - Add your view composers to `config/view.php` under the `composers` key. Automatic discovery is disabled for explicit control.
 
-      ```diff
-      -  'composers' => [],
-      +  'composers => [
-      +    'app' => App\View\Composers\App::class,
-      +    'comments' => App\View\Composers\Comments::class,
-      +    'post' => App\View\Composers\Post::class,
-      +  ],
-      ```
+     ```diff
+     -  'composers' => [],
+     +  'composers => [
+     +    'app' => App\View\Composers\App::class,
+     +    'comments' => App\View\Composers\Comments::class,
+     +    'post' => App\View\Composers\Post::class,
+     +  ],
+     ```
 
 5. **Register Console Commands**
    - Add custom Artisan commands to `config/console.php` under the `commands` key.
 
-      ```diff
-      +  'commands => [
-      +    'test' => App\Console\Commands\Test::class,
-      +  ],
-      ```
+     ```diff
+     +  'commands => [
+     +    'test' => App\Console\Commands\Test::class,
+     +  ],
+     ```
 
-6. **Vite Integration**
-   - Vite is enabled by default. Use the provided `Yard\Nutshell\Assets\Vite` class for asset management.
-
-7. **Sentry Integration**
+6. **Sentry Integration**
    - Sentry is automatically integrated if `sentry/sentry-laravel` is installed and configured.
 
 ## Usage
@@ -132,4 +129,3 @@
 ## About us
 
 [![banner](https://raw.githubusercontent.com/yardinternet/.github/refs/heads/main/profile/assets/small-banner-github.svg)](https://www.yard.nl/werken-bij/)
-
