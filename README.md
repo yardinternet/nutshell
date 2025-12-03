@@ -130,6 +130,7 @@
 - **Vite**: Use the `@vite` directive or helper as usual; Nutshell ensures correct asset paths.
 - **Sentry**: Errors and exceptions are reported to Sentry automatically.
 
-## Contributing
+## About us
 
-Pull requests are welcome! Please ensure code style and tests pass before submitting.
+[![banner](https://raw.githubusercontent.com/yardinternet/.github/refs/heads/main/profile/assets/small-banner-github.svg)](https://www.yard.nl/werken-bij/)
+
