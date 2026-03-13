@@ -32,7 +32,7 @@ function bootloader(?string $basePath = null): ApplicationBuilder
 
 	$app = $bootloader->create();
 
- 	do_action(Log::WP_ACTION_SET_LOGGER, $app->make('log'));
+	do_action(Log::WP_ACTION_SET_LOGGER, $app->make('log'));
 
 	return $bootloader;
 }
