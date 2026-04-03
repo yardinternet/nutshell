@@ -6,11 +6,11 @@
 	"config": {
 		"sort-packages": true,
 		"platform": {
-			"php": "8.1"
+			"php": "8.2"
 		}
 	},
 	"require": {
-		"php": ">=8.1",
+		"php": ">=8.2",
 		"roots/acorn": "^4.3",
 		"sentry/sentry-laravel": "^4.4",
 		"spatie/laravel-csp": "^2.10",
