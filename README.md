@@ -78,12 +78,19 @@
 
 2. **Update Acorn Bootloader**
 
-   - In your theme's `functions.php`, use the `Yard\Nutshell\bootloader()` helper to bootstrap Acorn with Nutshell's enhancements.
+   - In your theme's `functions.php`, use `Yard\Nutshell\Application()` helper to bootstrap Acorn with Nutshell's enhancements.
 
       ```diff
-      -\Roots\bootloader()->boot();
-      +define('ACORN_BASEPATH', __DIR__);
-      +\Yard\Nutshell\bootloader()->boot();
+
+      add_action('after_setup_theme', function () {
+      -  Application::configure()
+      -     ->withProviders([
+      -        App\Providers\ThemeServiceProvider::class,
+      -     ])
+      +  Yard\Nutshell\Application::configure(__DIR__)
+        ->boot();
+      }, 0);
+
       ```
 
 3. **Update app config**
@@ -116,21 +123,16 @@
       +  ],
       ```
 
-6. **Vite Integration**
-   - Vite is enabled by default. Use the provided `Yard\Nutshell\Assets\Vite` class for asset management.
-
-7. **Sentry Integration**
-   - Sentry is automatically integrated if `sentry/sentry-laravel` is installed and configured.
+6. **Sentry Integration**
+   - Sentry is automatically integrated via `sentry/sentry-laravel`.
 
 ## Usage
 
 - **Configuration Inheritance**: Any config file in your child theme's `config/` directory will override the parent. Empty config files will unset the corresponding configuration.
 - **View Composers**: Register all composers manually in `config/view.php`.
 - **Console Commands**: Register all commands manually in `config/console.php`.
-- **Vite**: Use the `@vite` directive or helper as usual; Nutshell ensures correct asset paths.
 - **Sentry**: Errors and exceptions are reported to Sentry automatically.
 
 ## About us
 
 [![banner](https://raw.githubusercontent.com/yardinternet/.github/refs/heads/main/profile/assets/small-banner-github.svg)](https://www.yard.nl/werken-bij/)
-
