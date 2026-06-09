@@ -74,7 +74,7 @@
 
 2. **Update Acorn Bootloader**
 
-   - In your theme's `functions.php`, use `Yard\Nutshell\Application()` to build Acorn with Nutshell's enhancements.
+   - In your theme's `functions.php`, use `Yard\Nutshell\Application` to build Acorn with Nutshell's enhancements.
 
       ```diff
 
