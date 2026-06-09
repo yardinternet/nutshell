@@ -12,10 +12,10 @@
 - **Child Theme Configuration Inheritance**:
   - Allows child themes to override parent configuration files without directory scans.
   - Uses a custom configuration repository to support unsetting and merging config values.
-- **Vite Asset Support**:
-  - Integrates with Vite for modern asset bundling and hot reloading.
 - **Sentry Integration**:
-  - Seamless error reporting via Sentry for Laravel.
+  - Seamless error reporting via [`sentry/sentry-laravel`](https://github.com/getsentry/sentry-laravel)
+- **CSP Integration**:
+  - Add CSP headers via [`spatie/laravel-csp`](https://github.com/spatie/laravel-csp)
 - **Custom View Composers**:
   - Manual registration of view composers for fine-grained control.
 - **Custom Console Commands**:
@@ -77,16 +77,14 @@
    - In your theme's `functions.php`, use `Yard\Nutshell\Application` to build Acorn with Nutshell's enhancements.
 
       ```diff
-
       add_action('after_setup_theme', function () {
-      -  Application::configure()
-      -     ->withProviders([
-      -        App\Providers\ThemeServiceProvider::class,
-      -     ])
-      +  Yard\Nutshell\Application::configure(__DIR__)
-        ->boot();
+     -    Application::configure()
+     +    Yar\Nutshell\Application::configure()
+            ->withProviders([
+                  App\Providers\ThemeServiceProvider::class,
+            ])
+            ->boot();
       }, 0);
-
       ```
 
 3. **Update app config**
