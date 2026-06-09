@@ -1,7 +1,9 @@
 # Nutshell: Enhanced Acorn Support for WordPress Themes
 
-[![Code Style](https://github.com/yardinternet/skeleton-package/actions/workflows/format-php.yml/badge.svg?no-cache)](https://github.com/yardinternet/skeleton-package/actions/workflows/format-php.yml)
-[![PHPStan](https://github.com/yardinternet/skeleton-package/actions/workflows/phpstan.yml/badge.svg?no-cache)](https://github.com/yardinternet/skeleton-package/actions/workflows/phpstan.yml)
+[![Code Style](https://github.com/yardinternet/nutshell/actions/workflows/format-php.yml/badge.svg)](https://github.com/yardinternet/nutshell/actions/workflows/format-php.yml)
+[![PHPStan](https://github.com/yardinternet/nutshell/actions/workflows/phpstan.yml/badge.svg?no-cache)](https://github.com/yardinternet/nutshell/actions/workflows/phpstan.yml)
+![Packagist Dependency Version](https://img.shields.io/packagist/dependency-v/yard/nutshell/php)
+![Packagist Dependency Version](https://img.shields.io/packagist/dependency-v/yard/nutshell/roots%2Facorn)
 
 **Nutshell** is a feature-rich package designed to extend [Acorn](https://roots.io/acorn/) for WordPress themes. It provides a flexible foundation for advanced theme development, including configuration inheritance, Sentry integration, Vite asset support, and more.
 
@@ -18,12 +20,6 @@
   - Manual registration of view composers for fine-grained control.
 - **Custom Console Commands**:
   - Register custom Artisan commands via configuration.
-
-## Requirements
-
-- PHP >= 8.2
-- [Acorn](https://github.com/roots/acorn) ^5.0
-- Composer
 
 ## Installation
 
