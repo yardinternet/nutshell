@@ -21,8 +21,8 @@
 
 ## Requirements
 
-- PHP >= 8.1
-- [Acorn](https://github.com/roots/acorn) ^4.3
+- PHP >= 8.2
+- [Acorn](https://github.com/roots/acorn) ^5.0
 - Composer
 
 ## Installation
@@ -78,7 +78,7 @@
 
 2. **Update Acorn Bootloader**
 
-   - In your theme's `functions.php`, use `Yard\Nutshell\Application()` helper to bootstrap Acorn with Nutshell's enhancements.
+   - In your theme's `functions.php`, use `Yard\Nutshell\Application()` to build Acorn with Nutshell's enhancements.
 
       ```diff
 
