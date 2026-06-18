@@ -5,7 +5,7 @@
 ![Packagist Dependency Version](https://img.shields.io/packagist/dependency-v/yard/nutshell/php)
 ![Packagist Dependency Version](https://img.shields.io/packagist/dependency-v/yard/nutshell/roots%2Facorn)
 
-**Nutshell** is a feature-rich package designed to extend [Acorn](https://roots.io/acorn/) for WordPress themes. It provides a flexible foundation for advanced theme development, including configuration inheritance, Sentry integration, Vite asset support, and more.
+**Nutshell** is a feature-rich package designed to extend [Acorn](https://roots.io/acorn/) for WordPress themes. It provides a flexible foundation for advanced theme development, including configuration inheritance, Sentry integration, CSP header support, and more.
 
 ## Features
 
@@ -79,7 +79,7 @@
       ```diff
       add_action('after_setup_theme', function () {
      -    Application::configure()
-     +    Yar\Nutshell\Application::configure()
+     +    Yard\Nutshell\Application::configure()
             ->withProviders([
                   App\Providers\ThemeServiceProvider::class,
             ])
