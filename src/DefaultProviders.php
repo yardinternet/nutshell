@@ -21,6 +21,10 @@ class DefaultProviders extends AcornDefaultProviders
 	public function __construct(?array $providers = null)
 	{
 		parent::__construct($providers);
-		$this->replace($this->acornProvidersReplacements);
+
+		$this->providers = array_map(
+			fn (string $provider): string => $this->acornProvidersReplacements[$provider] ?? $provider,
+			$this->providers
+		);
 	}
 }
