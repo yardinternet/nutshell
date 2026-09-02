@@ -2,7 +2,6 @@
 
 version: 2
 updates:
-
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
     # Workflow files stored in the default location of `.github/workflows`. (You don't need to specify `/.github/workflows` for `directory`. You can use `directory: "/"`.)
@@ -14,20 +13,7 @@ updates:
         patterns:
           - "*"
     commit-message:
-      prefix: "(chore)"
-
-  # Maintain dependencies for npm
-  # - package-ecosystem: "npm"
-  #   directory: "/"
-  #   schedule:
-  #     interval: "weekly"
-  #   groups:
-  #     npm:
-  #       patterns:
-  #         - "*"
-  #   commit-message:
-  #     prefix: "(chore)"
-  #   versioning-strategy: lockfile-only
+      prefix: "chore"
 
   # Maintain dependencies for Composer
   - package-ecosystem: "composer"
@@ -39,5 +25,5 @@ updates:
         patterns:
           - "*"
     commit-message:
-      prefix: "(chore)"
+      prefix: "chore"
     versioning-strategy: lockfile-only
