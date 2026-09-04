@@ -77,6 +77,8 @@
    - In your theme's `functions.php`, use `Yard\Nutshell\Application` to build Acorn with Nutshell's enhancements.
 
       ```diff
+     +define('ACORN_BASEPATH', __DIR__);
+     +
       add_action('after_setup_theme', function () {
      -    Application::configure()
      +    Yard\Nutshell\Application::configure()
@@ -86,6 +88,8 @@
             ->boot();
       }, 0);
       ```
+
+   - Define `ACORN_BASEPATH` in the **parent** theme. Without it Acorn infers the base path from the active stylesheet, so a child theme that has its own `app/` directory becomes the base path and the parent's `config/` is never loaded.
 
 3. **Update app config**
 

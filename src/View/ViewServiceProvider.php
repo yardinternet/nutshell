@@ -15,7 +15,7 @@ class ViewServiceProvider extends ViewViewServiceProvider
 		/** @var array<Composer> */
 		$composers = $this->app->get('config')->get('view.composers', []);
 
-		if (is_array($composers) && Arr::isAssoc($composers)) {
+		if (Arr::isAssoc($composers)) {
 			foreach ($composers as $composer) {
 				// @phpstan-ignore method.notFound
 				$this->view()->composer($composer::views(), $composer);
