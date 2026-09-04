@@ -1,29 +1,25 @@
 # Nutshell: Enhanced Acorn Support for WordPress Themes
 
-[![Code Style](https://github.com/yardinternet/skeleton-package/actions/workflows/format-php.yml/badge.svg?no-cache)](https://github.com/yardinternet/skeleton-package/actions/workflows/format-php.yml)
-[![PHPStan](https://github.com/yardinternet/skeleton-package/actions/workflows/phpstan.yml/badge.svg?no-cache)](https://github.com/yardinternet/skeleton-package/actions/workflows/phpstan.yml)
+[![Code Style](https://github.com/yardinternet/nutshell/actions/workflows/format-php.yml/badge.svg)](https://github.com/yardinternet/nutshell/actions/workflows/format-php.yml)
+[![PHPStan](https://github.com/yardinternet/nutshell/actions/workflows/phpstan.yml/badge.svg?no-cache)](https://github.com/yardinternet/nutshell/actions/workflows/phpstan.yml)
+![Packagist Dependency Version](https://img.shields.io/packagist/dependency-v/yard/nutshell/php)
+![Packagist Dependency Version](https://img.shields.io/packagist/dependency-v/yard/nutshell/roots%2Facorn)
 
-**Nutshell** is a feature-rich package designed to extend [Acorn](https://roots.io/acorn/) for WordPress themes. It provides a flexible foundation for advanced theme development, including configuration inheritance, Sentry integration, Vite asset support, and more.
+**Nutshell** is a feature-rich package designed to extend [Acorn](https://roots.io/acorn/) for WordPress themes. It provides a flexible foundation for advanced theme development, including configuration inheritance, Sentry integration, CSP header support, and more.
 
 ## Features
 
 - **Child Theme Configuration Inheritance**:
   - Allows child themes to override parent configuration files without directory scans.
   - Uses a custom configuration repository to support unsetting and merging config values.
-- **Vite Asset Support**:
-  - Integrates with Vite for modern asset bundling and hot reloading.
 - **Sentry Integration**:
-  - Seamless error reporting via Sentry for Laravel.
+  - Seamless error reporting via [`sentry/sentry-laravel`](https://github.com/getsentry/sentry-laravel)
+- **CSP Integration**:
+  - Add CSP headers via [`spatie/laravel-csp`](https://github.com/spatie/laravel-csp)
 - **Custom View Composers**:
   - Manual registration of view composers for fine-grained control.
 - **Custom Console Commands**:
   - Register custom Artisan commands via configuration.
-
-## Requirements
-
-- PHP >= 8.1
-- [Acorn](https://github.com/roots/acorn) ^4.3
-- Composer
 
 ## Installation
 
@@ -78,13 +74,22 @@
 
 2. **Update Acorn Bootloader**
 
-   - In your theme's `functions.php`, use the `Yard\Nutshell\bootloader()` helper to bootstrap Acorn with Nutshell's enhancements.
+   - In your theme's `functions.php`, use `Yard\Nutshell\Application` to build Acorn with Nutshell's enhancements.
 
       ```diff
-      -\Roots\bootloader()->boot();
-      +define('ACORN_BASEPATH', __DIR__);
-      +\Yard\Nutshell\bootloader()->boot();
+     +define('ACORN_BASEPATH', __DIR__);
+     +
+      add_action('after_setup_theme', function () {
+     -    Application::configure()
+     +    Yard\Nutshell\Application::configure()
+            ->withProviders([
+                  App\Providers\ThemeServiceProvider::class,
+            ])
+            ->boot();
+      }, 0);
       ```
+
+   - Define `ACORN_BASEPATH` in the **parent** theme. Without it Acorn infers the base path from the active stylesheet, so a child theme that has its own `app/` directory becomes the base path and the parent's `config/` is never loaded.
 
 3. **Update app config**
 
@@ -116,21 +121,16 @@
       +  ],
       ```
 
-6. **Vite Integration**
-   - Vite is enabled by default. Use the provided `Yard\Nutshell\Assets\Vite` class for asset management.
-
-7. **Sentry Integration**
-   - Sentry is automatically integrated if `sentry/sentry-laravel` is installed and configured.
+6. **Sentry Integration**
+   - Sentry is automatically integrated via `sentry/sentry-laravel`.
 
 ## Usage
 
 - **Configuration Inheritance**: Any config file in your child theme's `config/` directory will override the parent. Empty config files will unset the corresponding configuration.
 - **View Composers**: Register all composers manually in `config/view.php`.
 - **Console Commands**: Register all commands manually in `config/console.php`.
-- **Vite**: Use the `@vite` directive or helper as usual; Nutshell ensures correct asset paths.
 - **Sentry**: Errors and exceptions are reported to Sentry automatically.
 
 ## About us
 
 [![banner](https://raw.githubusercontent.com/yardinternet/.github/refs/heads/main/profile/assets/small-banner-github.svg)](https://www.yard.nl/werken-bij/)
-
