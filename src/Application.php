@@ -10,6 +10,7 @@ use Roots\Acorn\Configuration\Middleware;
 use Sentry\Laravel\Integration;
 use Spatie\Csp\AddCspHeaders;
 use Yard\Logging\Log;
+use Yard\Nutshell\Http\Middleware\InitializeAdminBar;
 
 class Application extends \Roots\Acorn\Application
 {
@@ -33,6 +34,8 @@ class Application extends \Roots\Acorn\Application
 		$application = parent::configure($basePath)
 			->withMiddleware(function (Middleware $middleware) {
 				$middleware->append(AddCspHeaders::class);
+				// Acorn's routes only: the wordpress group is copied from web before appends apply
+				$middleware->web(append: InitializeAdminBar::class);
 			})
 			->withPaths(public: get_theme_file_path('public'))
 			->withRouting(wordpress: true)
