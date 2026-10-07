@@ -17,6 +17,11 @@ function bootloader(): Bootloader
 	);
 
 	$bootloader->getApplication()->bind(
+		\Roots\Acorn\Bootstrap\HandleExceptions::class,
+		\Yard\Nutshell\Bootstrap\HandleExceptions::class
+	);
+
+	$bootloader->getApplication()->bind(
 		\Roots\Acorn\Console\Kernel::class,
 		\Yard\Nutshell\Console\Kernel::class
 	);
