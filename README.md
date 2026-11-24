@@ -130,6 +130,7 @@
 - **View Composers**: Register all composers manually in `config/view.php`.
 - **Console Commands**: Register all commands manually in `config/console.php`.
 - **Sentry**: Errors and exceptions are reported to Sentry automatically.
+- **Sessions**: WordPress-rendered requests have no session, so a page cache can store them. Routes in `routes/web.php` keep theirs. A theme that needs the session while WordPress renders a page adds it back in `ThemeServiceProvider::boot()` with `Route::pushMiddlewareToGroup('wordpress', \Roots\Acorn\Session\Middleware\StartSession::class);`.
 
 ## About us
 
