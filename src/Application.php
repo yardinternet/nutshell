@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Yard\Nutshell;
 
 use Illuminate\Foundation\Configuration\Exceptions;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Roots\Acorn\Configuration\ApplicationBuilder;
 use Roots\Acorn\Configuration\Middleware;
+use Roots\Acorn\Session\Middleware\StartSession;
 use Sentry\Laravel\Integration;
 use Spatie\Csp\AddCspHeaders;
 use Yard\Logging\Log;
@@ -33,6 +35,8 @@ class Application extends \Roots\Acorn\Application
 		$application = parent::configure($basePath)
 			->withMiddleware(function (Middleware $middleware) {
 				$middleware->append(AddCspHeaders::class);
+				// A session cookie on every page keeps Varnish from caching it
+				$middleware->wordpress(remove: [StartSession::class, ShareErrorsFromSession::class]);
 			})
 			->withPaths(public: get_theme_file_path('public'))
 			->withRouting(wordpress: true)
